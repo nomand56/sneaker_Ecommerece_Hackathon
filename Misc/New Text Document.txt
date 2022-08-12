@@ -1,0 +1,40 @@
+  let [value, setValue] = useState()
+  console.log(value)
+  const { todos } = useSelector((state) => state.TodoData)
+  const dispatch = useDispatch()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(addTask(value))
+
+
+  }
+  const handleUpdate = (i) => {
+
+    let alertData = prompt("Enter Update")
+    dispatch(deleteTask({
+      i: i,
+      Task: alertData
+    }))
+  }
+  console.log(todos)
+
+  return <div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" onChange={(e) => setValue(e.target.value)} />
+      <button type="submit"> OnSumit</button>
+    </form>
+
+    {todos.map((item, i) => {
+      return <li key={i} >
+        {/* {console.log(item.Task)} */}
+        {item.Task}
+        <button onClick={() => dispatch(deleteTask(item.id))}>
+          Delete the List
+        </button>
+        <button onClick={(i) => handleUpdate(i)}>
+          UpdateList
+        </button>
+      </li>
+
+
+    })}
