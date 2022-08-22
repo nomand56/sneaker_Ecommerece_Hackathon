@@ -16,7 +16,7 @@ const SignIn = ({ handleChange }) => {
     const initialValues = {
         email: '',
         password: '',
-        // remember: false
+
     }
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('please enter valid email').required("Required"),
@@ -35,7 +35,7 @@ const SignIn = ({ handleChange }) => {
 
             }
         }).catch((err) => {
-
+            console.log(err)
             alert("user not found")
 
         })

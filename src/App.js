@@ -15,9 +15,9 @@ export default function App() {
   let state = useSelector((state) => state);
   let [product, setProduct] = useState();
   let [page, setPage] = useState(0);
-  // console.log(state)
+
   const token = state.auth.logedIn;
-  // console.log(loginToken);
+
   const url = `https://fakse-store-api.herokuapp.com/api/v1/products?limit=10&offset=${page * 10
     }`;
   useEffect(() => {
@@ -25,11 +25,11 @@ export default function App() {
       .get(url)
       .then(function (response) {
         const { data } = response;
-        // console.log(data)
+
         setProduct(data);
       })
       .catch(function (error) {
-        // handle error
+
         console.log(error);
       });
   }, [url]);
@@ -39,7 +39,7 @@ export default function App() {
       <BrowserRouter>
         <Navbar token={token} />
         <Routes>
-          {/* {isLogin &&  */}
+
           <Route
             path="/"
             element={<Products product={product} setPage={setPage} />}
@@ -56,6 +56,7 @@ export default function App() {
       </BrowserRouter>
 
       {state.cart.showCart && <Carts />}
+      {/* <div hidden id="snipcart" data-api-key="ZjA0ZWNiZjItZmVkOC00YzA5LTgyM2MtZTcwZGYxNjkxNDQ2NjM3OTY3NDQxMzM2MjcwMDM4" /> */}
     </div>
   );
 }

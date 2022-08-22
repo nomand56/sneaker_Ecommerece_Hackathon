@@ -20,20 +20,6 @@ function Productitem({ product }) {
     }
 
     let dynamoData = product.filter((item) => item.id == id)
-    // console.log(dynamoData)
-    // console.log(quantity)
-    const handleSubmit = () => {
-        setCartData({
-            id: dynamoData[0].id,
-            title: dynamoData[0].title,
-            price: dynamoData[0].price,
-            quantity: quantity,
-            img: dynamoData[0].images[1]
-        })
-        dispatch(addToCart(cartData))
-        // console.log(cartData)
-    }
-
     return (<div>
 
         <Grid container spacing={2}>
@@ -70,12 +56,13 @@ function Productitem({ product }) {
                             ${dynamoData[0].price}
                         </strong>
                     </h6>
-                    <Button variant="contained" onClick={handleSubmit}>
-                        ADD to CART
-                    </Button>
-                    <span><input type="number" id="quantity" name="quantity" min="1" max="5" onChange={(e) => {
-                        setQuantity(e.target.value)
-                    }} /></span>
+                    <button className="snipcart-add-item"
+                        data-item-id={dynamoData[0].id}
+                        data-item-image={dynamoData[0].images[1]}
+                        data-item-name={dynamoData[0].title}
+                        data-item-price={dynamoData[0].price}
+                    >ADD TO CART</button>
+
                 </Box>
             </Grid>
         </Grid>
